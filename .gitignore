@@ -34,9 +34,7 @@ captures/
 
 # Intellij
 *.iml
-.idea/workspace.xml
 .idea/tasks.xml
-.idea/gradle.xml
 .idea/dictionaries
 .idea/libraries
 
@@ -53,3 +51,21 @@ google-services.json
 freeline.py
 freeline/
 freeline_project_description.json
+
+keystore.properties
+fabric.properties
+app/google-services.json
+
+.idea
+
+# Intellij
+gradle.properties
+# Keystore files
+keystorefiles
+
+app/release
+gradlew
+gradlew.bat
+gradle
+
+app/libs/
