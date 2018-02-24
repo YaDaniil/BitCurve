@@ -1,0 +1,319 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:1797644686023795219",
+      "lastPropertyId": "10:3142827985646034915",
+      "name": "UtxoEntity",
+      "properties": [
+        {
+          "id": "1:7693520256206045875",
+          "name": "id"
+        },
+        {
+          "id": "2:3241818853406303929",
+          "name": "txHash"
+        },
+        {
+          "id": "3:29455736861389254",
+          "name": "txHashBigEndian"
+        },
+        {
+          "id": "4:6811953020180330693",
+          "name": "txIndex"
+        },
+        {
+          "id": "5:5239430086694404590",
+          "name": "txOutputN"
+        },
+        {
+          "id": "6:3000213827724894456",
+          "name": "script"
+        },
+        {
+          "id": "7:6622251704350994604",
+          "name": "value"
+        },
+        {
+          "id": "8:954029168002171388",
+          "name": "valueHex"
+        },
+        {
+          "id": "9:375129707566390673",
+          "name": "confirmations"
+        },
+        {
+          "id": "10:3142827985646034915",
+          "indexId": "1:2807607849807238717",
+          "name": "accountId"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:3099660045905745527",
+      "lastPropertyId": "9:1536463847876883655",
+      "name": "TxOutputEntity",
+      "properties": [
+        {
+          "id": "1:8747071751273926853",
+          "name": "id"
+        },
+        {
+          "id": "2:3497135554748131323",
+          "name": "valueSatoshi"
+        },
+        {
+          "id": "3:5242337209717911178",
+          "name": "isSpent"
+        },
+        {
+          "id": "4:8396787837908393689",
+          "name": "txIndex"
+        },
+        {
+          "id": "5:9023691541343192280",
+          "name": "address"
+        },
+        {
+          "id": "6:9186030081324876771",
+          "name": "type"
+        },
+        {
+          "id": "7:5266132714429653220",
+          "name": "n"
+        },
+        {
+          "id": "8:1988649673707174607",
+          "name": "script"
+        },
+        {
+          "id": "9:1536463847876883655",
+          "indexId": "2:7663384109754446896",
+          "name": "txEntityId"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "3:3328650058545829787",
+      "lastPropertyId": "13:3006292487150776122",
+      "name": "TxInputEntity",
+      "properties": [
+        {
+          "id": "1:1987055367299843243",
+          "name": "id"
+        },
+        {
+          "id": "2:7238074684822762396",
+          "name": "sequence"
+        },
+        {
+          "id": "3:8520387326648177394",
+          "name": "script"
+        },
+        {
+          "id": "4:35609625674571576",
+          "name": "witness"
+        },
+        {
+          "id": "5:5253292789611663478",
+          "name": "prevOutHash"
+        },
+        {
+          "id": "6:6986640268650405657",
+          "name": "prevOutValueSatoshi"
+        },
+        {
+          "id": "7:7977551514015788926",
+          "name": "prevOutTxIndex"
+        },
+        {
+          "id": "8:2024106794583113691",
+          "name": "prevOutType"
+        },
+        {
+          "id": "9:5631195006307952042",
+          "name": "prevOutAddress"
+        },
+        {
+          "id": "10:2866826176030859422",
+          "name": "prevOutScript"
+        },
+        {
+          "id": "11:3811915948403589249",
+          "name": "prevOutIsSpent"
+        },
+        {
+          "id": "12:8731298486282414084",
+          "name": "prevOutN"
+        },
+        {
+          "id": "13:3006292487150776122",
+          "indexId": "3:7462939969199048561",
+          "name": "txEntityId"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "4:2418936013461096037",
+      "lastPropertyId": "11:2516514702015716007",
+      "name": "AccountEntity",
+      "properties": [
+        {
+          "id": "1:2083771236899132792",
+          "name": "id"
+        },
+        {
+          "id": "2:8388385799867708663",
+          "name": "accountId"
+        },
+        {
+          "id": "3:994028006599446959",
+          "name": "label"
+        },
+        {
+          "id": "4:767690503293297066",
+          "name": "balanceSatoshi"
+        },
+        {
+          "id": "5:7813380896832828222",
+          "name": "currentReceiveAddress"
+        },
+        {
+          "id": "6:8146050363169255537",
+          "name": "currentChangeAddress"
+        },
+        {
+          "id": "7:5289964734108175318",
+          "name": "lastIssuedReceiveAddressIndex"
+        },
+        {
+          "id": "8:9117463610416947210",
+          "name": "lastIssuedChangeAddressIndex"
+        },
+        {
+          "id": "9:6304430608396303573",
+          "name": "lastUsedReceiveAddressIndex"
+        },
+        {
+          "id": "10:6895367012611872004",
+          "name": "lastUsedChangeAddressIndex"
+        },
+        {
+          "id": "11:2516514702015716007",
+          "name": "creationTime"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "5:5674563682463880639",
+      "lastPropertyId": "19:3462338059151117890",
+      "name": "TxEntity",
+      "properties": [
+        {
+          "id": "1:1082579971309526981",
+          "name": "id"
+        },
+        {
+          "id": "2:6424304022789348832",
+          "name": "hash"
+        },
+        {
+          "id": "3:9095214556794325828",
+          "name": "version"
+        },
+        {
+          "id": "4:5043361399340609446",
+          "name": "weight"
+        },
+        {
+          "id": "5:5753861602462441738",
+          "name": "inputsNumber"
+        },
+        {
+          "id": "6:1365157707629681049",
+          "name": "outputsNumber"
+        },
+        {
+          "id": "7:2583271733935573057",
+          "name": "lockTime"
+        },
+        {
+          "id": "8:3010042291063840889",
+          "name": "sizeBytes"
+        },
+        {
+          "id": "9:2708012495733715513",
+          "name": "doubleSpend"
+        },
+        {
+          "id": "10:8372294163649270006",
+          "name": "isRbf"
+        },
+        {
+          "id": "11:1286140692637001980",
+          "name": "time"
+        },
+        {
+          "id": "12:1892407005144246014",
+          "name": "feeSatoshi"
+        },
+        {
+          "id": "13:8697970871693078786",
+          "name": "result"
+        },
+        {
+          "id": "14:7903201816865841724",
+          "name": "balanceSatoshi"
+        },
+        {
+          "id": "15:3779289388411895201",
+          "name": "relatedIpAddress"
+        },
+        {
+          "id": "16:7714900772102360505",
+          "name": "blockHeight"
+        },
+        {
+          "id": "17:2772536869887468555",
+          "name": "txIndex"
+        },
+        {
+          "id": "18:5561886953141652602",
+          "name": "isReceived"
+        },
+        {
+          "id": "19:3462338059151117890",
+          "indexId": "4:7406796784352452985",
+          "name": "accountId"
+        }
+      ],
+      "relations": [
+        {
+          "id": "1:42092251916864382",
+          "name": "inputs"
+        },
+        {
+          "id": "2:2572998156193106038",
+          "name": "outputs"
+        }
+      ]
+    }
+  ],
+  "lastEntityId": "5:5674563682463880639",
+  "lastIndexId": "4:7406796784352452985",
+  "lastRelationId": "2:2572998156193106038",
+  "lastSequenceId": "0:0",
+  "modelVersion": 4,
+  "modelVersionParserMinimum": 4,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}
