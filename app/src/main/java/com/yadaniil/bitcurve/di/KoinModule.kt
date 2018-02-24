@@ -17,6 +17,7 @@ import com.yadaniil.bitcurve.data.db.models.MyObjectBox
 import com.yadaniil.bitcurve.data.db.models.TxEntity
 import com.yadaniil.bitcurve.data.db.models.UtxoEntity
 import com.yadaniil.bitcurve.data.prefs.SharedPrefs
+import com.yadaniil.bitcurve.screens.splash.SplashViewModel
 import io.objectbox.BoxStore
 import okhttp3.Cache
 import okhttp3.OkHttpClient
@@ -59,7 +60,7 @@ val dbModule = applicationContext {
 }
 
 val viewModelModule = applicationContext {
-
+    viewModel { SplashViewModel(get()) }
 }
 
 val netModule = applicationContext {

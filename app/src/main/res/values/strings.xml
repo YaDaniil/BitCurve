@@ -8,6 +8,8 @@
     <string name="receive">Receive</string>
     <string name="account">Account</string>
     <string name="send">Send</string>
+    <string name="you_have_no_transactions">You have no transactions</string>
+    <string name="splash_description_text">Ultimate cryptocurrency wallet</string>
 
     <plurals name="seconds">
         <item quantity="one">%d second</item>
