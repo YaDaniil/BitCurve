@@ -1,4 +1,4 @@
-package com.yadaniil.bitcurve
+package com.yadaniil.bitcurve.screens
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar
 import android.view.KeyEvent
 import com.journeyapps.barcodescanner.CaptureManager
 import com.journeyapps.barcodescanner.CompoundBarcodeView
+import com.yadaniil.bitcurve.R
 import org.jetbrains.anko.find
 
 /**

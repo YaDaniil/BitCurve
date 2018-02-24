@@ -5,6 +5,9 @@
     <string name="ago">ago</string>
     <string name="scan_qr_code">Scan QR-code</string>
     <string name="scan_qr_description">Place QR-code inside viewfinder to scan it</string>
+    <string name="receive">Receive</string>
+    <string name="account">Account</string>
+    <string name="send">Send</string>
 
     <plurals name="seconds">
         <item quantity="one">%d second</item>
