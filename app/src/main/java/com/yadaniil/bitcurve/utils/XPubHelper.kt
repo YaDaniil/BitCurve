@@ -1,9 +1,9 @@
 package com.yadaniil.bitcurve.utils
 
 import com.yadaniil.bitcurve.logic.Account
-import com.yadaniil.bitcurve.logic.OurWallet
 import org.bitcoinj.core.AddressFormatException
 import org.bitcoinj.core.Base58
+import org.bitcoinj.core.NetworkParameters
 import org.bitcoinj.crypto.DeterministicKey
 import org.bitcoinj.crypto.HDKeyDerivation
 import org.bitcoinj.wallet.DeterministicKeyChain
@@ -32,12 +32,12 @@ object XPubHelper {
         return depth.toInt() == 3
     }
 
-    fun getXpubForAccount(keychain: DeterministicKeyChain): String {
-        return keychain.watchingKey.serializePubB58(OurWallet.btcWallet?.params)
+    fun getXpubForAccount(keychain: DeterministicKeyChain, params: NetworkParameters): String {
+        return keychain.watchingKey.serializePubB58(params)
     }
 
-    fun getXpubForAccount(account: Account): String {
-        return account.keyChain.watchingKey.serializePubB58(OurWallet.btcWallet?.params)
+    fun getXpubForAccount(account: Account, params: NetworkParameters): String {
+        return account.keyChain.watchingKey.serializePubB58(params)
     }
 
     @Throws(AddressFormatException::class)

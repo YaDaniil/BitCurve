@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_fresh_receive_address"
+        android:title="@string/get_fresh_receive_address"
+        android:icon="@drawable/ic_refresh_white_24dp"
+        app:showAsAction="always" />
+</menu>

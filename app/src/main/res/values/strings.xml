@@ -10,6 +10,7 @@
     <string name="send">Send</string>
     <string name="you_have_no_transactions">You have no transactions</string>
     <string name="splash_description_text">Ultimate cryptocurrency wallet</string>
+    <string name="get_fresh_receive_address">Get fresh receive address</string>
 
     <plurals name="seconds">
         <item quantity="one">%d second</item>

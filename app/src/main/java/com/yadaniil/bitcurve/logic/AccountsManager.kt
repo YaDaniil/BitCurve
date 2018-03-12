@@ -7,6 +7,7 @@ import com.google.common.collect.ImmutableList
 import org.bitcoinj.core.NetworkParameters
 import org.bitcoinj.crypto.ChildNumber
 import org.bitcoinj.wallet.DeterministicKeyChain
+import org.bitcoinj.wallet.Wallet
 
 /**
  * Created by danielyakovlev on 1/29/18.
@@ -24,14 +25,14 @@ class AccountsManager(private val repo: Repository) {
         params = WalletHelper.params
     }
 
-    fun sync() {
-        repo.getAllAccounts().forEach { addAccount(it) }
+    fun sync(btcWallet: Wallet?) {
+        repo.getAllAccounts().forEach { addAccount(it, btcWallet) }
     }
 
     // region Accounts
     fun getAllAccounts() = accounts?.toList() ?: emptyList()
 
-    fun addAccount(accountEntity: AccountEntity) {
+    fun addAccount(accountEntity: AccountEntity, wallet: Wallet?) {
         val coinType = if (Application.isTestnet)
             ChildNumber(1, true)
         else ChildNumber.ZERO_HARDENED
@@ -41,7 +42,7 @@ class AccountsManager(private val repo: Repository) {
                 coinType,
                 ChildNumber(accountEntity.accountId.toInt(), true))
 
-        val keyChain = DeterministicKeyChain(OurWallet.btcWallet?.keyChainSeed, accountPath)
+        val keyChain = DeterministicKeyChain(wallet?.keyChainSeed, accountPath)
         addAccount(accountEntity, keyChain)
     }
 

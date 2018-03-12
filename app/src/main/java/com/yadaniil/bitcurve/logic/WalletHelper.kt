@@ -1,6 +1,7 @@
 package com.yadaniil.bitcurve.logic
 
 import android.content.Context
+import com.google.common.base.Joiner
 import com.yadaniil.bitcurve.Application
 import com.yadaniil.bitcurve.data.Repository
 import org.bitcoinj.core.NetworkParameters
@@ -10,6 +11,7 @@ import org.bitcoinj.wallet.*
 import timber.log.Timber
 import java.io.File
 import java.io.IOException
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by danielyakovlev on 1/9/18.
@@ -22,8 +24,17 @@ class WalletHelper (private val context: Context,
 
     private val DEFAULT_WALLET_DIRECTORY_SUFFIX = "/storageWalletBTC"
     private var btcWallet: Wallet? = null
+    private val directoryPath = context.filesDir.path + DEFAULT_WALLET_DIRECTORY_SUFFIX
+    private val walletFile = File(directoryPath)
 
     // region Wallet
+    fun getWallet() = btcWallet
+
+    fun getMnemonic(): String {
+        val seed = btcWallet?.keyChainSeed
+        return Joiner.on(' ').join(seed?.mnemonicCode!!)
+    }
+
     fun setupOrCreateBitcoinWallet(seed: DeterministicSeed?,
                                    walletPassword: String?): Boolean {
         if (seed != null) {
@@ -32,7 +43,6 @@ class WalletHelper (private val context: Context,
             // seed == null
             try {
                 btcWallet = setupWalletFromFile(walletPassword)
-                OurWallet.btcWallet = btcWallet
             } catch (e: WrongPasswordException) {
                 throw WrongPasswordException()
             } catch (e: UnreadableWalletException) {
@@ -41,8 +51,9 @@ class WalletHelper (private val context: Context,
             }
         }
 
+//        val walletFiles = btcWallet?.autosaveToFile(walletFile, 500, TimeUnit.MILLISECONDS, null)
 
-        accountsManager.sync()
+        accountsManager.sync(btcWallet)
         btcWallet?.utxoProvider = UtxoProvider(repo)
         return true
     }
@@ -62,36 +73,34 @@ class WalletHelper (private val context: Context,
         return Wallet(params, keyChainGroup)
     }
 
-    protected fun createNewWallet() {
+    private fun createNewWallet() {
         Timber.d("createNewWallet().started.")
         val keyChainGroup = KeyChainGroup(params)
 
         val resultWallet = Wallet(params, keyChainGroup)
-
+        resultWallet.addAndActivateHDChain(keyChainGroup.activeKeyChain)
         saveWalletToFile(resultWallet, null)
         btcWallet = resultWallet
-        OurWallet.btcWallet = btcWallet
     }
 
-    protected fun saveWalletToFile(wallet: Wallet, password: String?) {
+    private fun saveWalletToFile(wallet: Wallet, password: String?) {
         Timber.d("saveWalletToFile().started")
-
-        val directoryPath = context.filesDir.path + DEFAULT_WALLET_DIRECTORY_SUFFIX
-        val walletFile = File(directoryPath)
 
         if (password != null && password != "") {
 //            saveWalletWithPasswordToFile(wallet, password, walletFile)
         } else {
-            saveWalletToFile(walletFile, wallet)
+            saveWalletToFile(wallet)
         }
     }
 
-    private fun saveWalletToFile(walletFile: File, wallet: Wallet): Boolean {
+    fun saveWalletToFile(wallet: Wallet?): Boolean {
+        val directoryPath = context.filesDir.path + DEFAULT_WALLET_DIRECTORY_SUFFIX
+        val walletFile = File(directoryPath)
         return try {
-            wallet.saveToFile(walletFile)
+            wallet?.saveToFile(walletFile)
             true
         } catch (e: IOException) {
-            e.printStackTrace()
+            Timber.e(e.message)
             false
         }
     }
@@ -110,7 +119,6 @@ class WalletHelper (private val context: Context,
 //            }
 //
 //        }
-
         return loadBitcoinWalletFromFile()
     }
 
@@ -122,15 +130,6 @@ class WalletHelper (private val context: Context,
         Timber.d("loadBitcoinWalletFromFile().walletFile==>" + walletFile)
 
         return Wallet.loadFromFile(walletFile)
-    }
-
-    protected fun saveWalletToFileAsync() {
-//        Timber.d("saveWalletToFileAsync().started.")
-//        if (walletSavingTask != null) {
-//            walletSavingTask.cancel(true)
-//        }
-//        walletSavingTask = WalletSavingTask(btcWallet, info.getCurrentWalletPassword())
-//        walletSavingTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
     }
     // endregion Wallet
 
