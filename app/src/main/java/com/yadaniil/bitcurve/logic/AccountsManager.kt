@@ -4,9 +4,11 @@ import com.yadaniil.bitcurve.Application
 import com.yadaniil.bitcurve.data.Repository
 import com.yadaniil.bitcurve.data.db.models.AccountEntity
 import com.google.common.collect.ImmutableList
+import org.bitcoinj.core.Address
 import org.bitcoinj.core.NetworkParameters
 import org.bitcoinj.crypto.ChildNumber
 import org.bitcoinj.wallet.DeterministicKeyChain
+import org.bitcoinj.wallet.KeyChain
 import org.bitcoinj.wallet.Wallet
 
 /**
@@ -70,6 +72,14 @@ class AccountsManager(private val repo: Repository) {
         return null
     }
 
+    fun getAccountByEntityId(accountEntityId: Long): Account? {
+        accounts?.forEach {
+            if (it.accountEntity.id == accountEntityId)
+                return it
+        }
+        return null
+    }
+
     fun deleteAllAccounts() {
         accounts?.clear()
         repo.deleteAllAccounts()
@@ -95,7 +105,20 @@ class AccountsManager(private val repo: Repository) {
     }
 
     private fun initReceiveAddressesForAccount(account: Account) {
+        val receiveAddresses: MutableList<Address> = ArrayList()
+        val receiveDeterministicKeys = account.keyChain.getKeys(KeyChain.KeyPurpose.RECEIVE_FUNDS, 20)
+        receiveDeterministicKeys.forEach {
+            receiveAddresses += it.toAddress(params)
+        }
 
+        val changeAddresses: MutableList<Address> = ArrayList()
+        val changeDeterministicKeys = account.keyChain.getKeys(KeyChain.KeyPurpose.CHANGE, 20)
+        changeDeterministicKeys.forEach {
+            changeAddresses += it.toAddress(params)
+        }
+
+        account.receiveAddresses = receiveAddresses.toList()
+        account.changeAddresses = changeAddresses.toList()
     }
     // endregion Addresses
 

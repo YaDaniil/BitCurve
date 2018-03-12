@@ -39,10 +39,29 @@ data class TxEntity(
 
     fun getFirstReceiver(): String = outputs?.first()?.address ?: ""
 
+    fun getReceivers(): List<String> {
+        val receivers: MutableList<String> = ArrayList()
+        outputs?.mapTo(receivers) { it.address }
+        return receivers
+    }
+
+    fun getSender(): String = inputs?.first()?.prevOutAddress ?: ""
+
+    fun getSenders(): List<String> {
+        val senders: MutableList<String> = ArrayList()
+        inputs?.mapTo(senders) { it.prevOutAddress ?: "" }
+        return senders
+    }
+
     fun getTxConfirmationsCount(latestBlock: Int) =
             if (blockHeight <= 0) 0 else Math.max(latestBlock, blockHeight) - blockHeight + 1
 
     companion object {
         val CONFIRMATIONS_TO_BE_CONFIRMED = 6
+        val REJECTED_TRANSACTION_HEIGHT = -3
     }
+
+    fun isRejected() = blockHeight == REJECTED_TRANSACTION_HEIGHT
+
+    fun isOutgoing() = !(isReceived ?: false)
 }

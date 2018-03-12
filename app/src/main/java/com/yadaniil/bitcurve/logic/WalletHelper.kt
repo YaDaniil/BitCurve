@@ -4,6 +4,7 @@ import android.content.Context
 import com.google.common.base.Joiner
 import com.yadaniil.bitcurve.Application
 import com.yadaniil.bitcurve.data.Repository
+import com.yadaniil.bitcurve.data.db.models.AccountEntity
 import org.bitcoinj.core.NetworkParameters
 import org.bitcoinj.params.MainNetParams
 import org.bitcoinj.params.TestNet3Params
@@ -11,7 +12,7 @@ import org.bitcoinj.wallet.*
 import timber.log.Timber
 import java.io.File
 import java.io.IOException
-import java.util.concurrent.TimeUnit
+import java.util.*
 
 /**
  * Created by danielyakovlev on 1/9/18.
@@ -78,9 +79,13 @@ class WalletHelper (private val context: Context,
         val keyChainGroup = KeyChainGroup(params)
 
         val resultWallet = Wallet(params, keyChainGroup)
-        resultWallet.addAndActivateHDChain(keyChainGroup.activeKeyChain)
         saveWalletToFile(resultWallet, null)
         btcWallet = resultWallet
+
+        val accountLabel = "My account"
+        val accountEntity = AccountEntity(accountId = 0, label = accountLabel, creationTime = Date())
+        repo.saveNewAccount(accountEntity)
+        accountsManager.addAccount(accountEntity, btcWallet)
     }
 
     private fun saveWalletToFile(wallet: Wallet, password: String?) {
@@ -93,7 +98,7 @@ class WalletHelper (private val context: Context,
         }
     }
 
-    fun saveWalletToFile(wallet: Wallet?): Boolean {
+    private fun saveWalletToFile(wallet: Wallet?): Boolean {
         val directoryPath = context.filesDir.path + DEFAULT_WALLET_DIRECTORY_SUFFIX
         val walletFile = File(directoryPath)
         return try {

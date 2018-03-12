@@ -4,7 +4,10 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import com.google.zxing.integration.android.IntentIntegrator
 import com.yadaniil.bitcurve.R
+import com.yadaniil.bitcurve.logic.Account
 import com.yadaniil.bitcurve.screens.ScanQrActivity
+import com.yadaniil.bitcurve.screens.account.AccountActivity
+import org.jetbrains.anko.startActivity
 
 /**
  * Created by danielyakovlev on 1/15/18.
@@ -31,5 +34,9 @@ object Navigator {
                 .setPrompt(activity.getString(R.string.scan_qr_description))
                 .setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES)
                 .initiateScan()
+    }
+
+    fun toAccountActivity(activity: AppCompatActivity, account: Account) {
+        activity.startActivity<AccountActivity>("accountEntityId" to account.accountEntity.id)
     }
 }

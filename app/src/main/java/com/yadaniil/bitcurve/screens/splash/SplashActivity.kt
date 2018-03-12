@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.yadaniil.bitcurve.R
 import com.yadaniil.bitcurve.screens.account.AccountActivity
+import com.yadaniil.bitcurve.screens.accounts.AccountsActivity
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import org.koin.android.architecture.ext.viewModel
@@ -32,7 +33,7 @@ class SplashActivity : AppCompatActivity() {
                         return@Observer
 
                     if (isWalletLoaded) {
-                        startActivity<AccountActivity>()
+                        startActivity<AccountsActivity>()
                         finish()
                     } else {
                         toast("Error")

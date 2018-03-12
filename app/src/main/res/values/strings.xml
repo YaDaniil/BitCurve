@@ -11,6 +11,20 @@
     <string name="you_have_no_transactions">You have no transactions</string>
     <string name="splash_description_text">Ultimate cryptocurrency wallet</string>
     <string name="get_fresh_receive_address">Get fresh receive address</string>
+    <string name="mnemonic_warning">Save mnemonic phrase to avoid losing access to the wallet</string>
+    <string name="save_mnemonic_title">Save mnemonic phrase</string>
+    <string name="save_mnemonic_description">Mnemonic phrase is your secret. Who knows it - owns bitcoins. Write it down and never show anyone.</string>
+    <string name="later">Later</string>
+    <string name="view">Show</string>
+    <string name="loading_error">Loading error</string>
+    <string name="wallet_mnemonic_phrase_bip_44">Wallet mnemonic phrase (BIP44)</string>
+    <string name="mnemonic_phrase_is_written_down">Mnemonic phrase is written down</string>
+    <string name="settings">Settings</string>
+    <string name="accounts">Accounts</string>
+    <string name="empty_transactions_view_subtext">This account have no transactions</string>
+    <string name="transition_amount">transition_amount</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
 
     <plurals name="seconds">
         <item quantity="one">%d second</item>

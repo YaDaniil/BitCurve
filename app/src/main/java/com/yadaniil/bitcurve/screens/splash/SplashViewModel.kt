@@ -1,5 +1,6 @@
 package com.yadaniil.bitcurve.screens.splash
 
+import android.accounts.AccountManager
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import com.yadaniil.bitcurve.BaseViewModel
@@ -14,7 +15,7 @@ import timber.log.Timber
  */
 
 
-class SplashViewModel (private val walletHelper: WalletHelper) : BaseViewModel() {
+class SplashViewModel(private val walletHelper: WalletHelper) : BaseViewModel() {
 
     private var isWalletLoaded: MutableLiveData<Boolean>? = null
 
@@ -25,6 +26,7 @@ class SplashViewModel (private val walletHelper: WalletHelper) : BaseViewModel()
 
         Completable.fromAction {
             walletHelper.setupOrCreateBitcoinWallet(null, "")
+
         }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

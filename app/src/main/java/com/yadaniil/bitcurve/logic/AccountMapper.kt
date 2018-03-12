@@ -10,12 +10,28 @@ import com.yadaniil.bitcurve.data.db.models.*
  */
 
 object AccountMapper {
-    fun mapAccount(accountEntity: AccountEntity, response: MultiaddressResponse?): AccountEntity {
-        if (response == null) return accountEntity
-        return accountEntity.copy(balanceSatoshi = response.wallet.finalBalance)
+    fun mapAccount(account: Account, multiaddressResponse: MultiaddressResponse?,
+                   utxosResponse: UtxosResponse): AccountEntity {
+        if (multiaddressResponse == null) return account.accountEntity
+
+        val updatedTxes = AccountMapper
+                .mapTransactions(account, multiaddressResponse)
+        val updatedUtxos = AccountMapper.mapUtxo(account, utxosResponse)
+
+        val updatedAccount = account.accountEntity.copy(
+                balanceSatoshi = calculateBalanceFromUtxo(updatedUtxos))
+
+        updatedAccount.transactions?.clear()
+        updatedAccount.transactions?.addAll(updatedTxes)
+
+
+        updatedAccount.utxos?.clear()
+        updatedAccount.utxos?.addAll(updatedUtxos)
+
+        return updatedAccount
     }
 
-    fun mapTransactions(account: Account, response: MultiaddressResponse?): List<TxEntity> {
+    private fun mapTransactions(account: Account, response: MultiaddressResponse?): List<TxEntity> {
         if(response == null) return emptyList()
 
         val txes: MutableList<TxEntity> = ArrayList()
@@ -95,7 +111,7 @@ object AccountMapper {
         return outputsEntities
     }
 
-    fun mapUtxo(account: Account, response: UtxosResponse): List<UtxoEntity> {
+    private fun mapUtxo(account: Account, response: UtxosResponse): List<UtxoEntity> {
         val utxoEntities: MutableList<UtxoEntity> = ArrayList()
         response.utxos.forEach {
             val utxoEntity = UtxoEntity(
@@ -110,7 +126,17 @@ object AccountMapper {
             )
             utxoEntity.account?.target = account.accountEntity
             utxoEntities.add(utxoEntity)
+
         }
+
         return utxoEntities
+    }
+
+    private fun calculateBalanceFromUtxo(utxos: List<UtxoEntity>): Long {
+        var balance: Long = 0
+        utxos.forEach {
+            balance += it.value
+        }
+        return balance
     }
 }
