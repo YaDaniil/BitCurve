@@ -19,6 +19,7 @@ import com.yadaniil.bitcurve.data.db.models.UtxoEntity
 import com.yadaniil.bitcurve.data.prefs.SharedPrefs
 import com.yadaniil.bitcurve.screens.account.main.MainViewModel
 import com.yadaniil.bitcurve.screens.account.receive.ReceiveViewModel
+import com.yadaniil.bitcurve.screens.account.send.SendViewModel
 import com.yadaniil.bitcurve.screens.accounts.AccountsViewModel
 import com.yadaniil.bitcurve.screens.splash.SplashViewModel
 import io.objectbox.BoxStore
@@ -67,6 +68,7 @@ val viewModelModule = applicationContext {
     viewModel { ReceiveViewModel(get()) }
     viewModel { AccountsViewModel(get(), get(), get()) }
     viewModel { MainViewModel(get(), get()) }
+    viewModel { SendViewModel(get(), get(), get()) }
 }
 
 val netModule = applicationContext {

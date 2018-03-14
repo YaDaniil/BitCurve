@@ -3,8 +3,7 @@ package com.yadaniil.bitcurve.data.api
 import com.yadaniil.bitcurve.data.api.models.MultiaddressResponse
 import com.yadaniil.bitcurve.data.api.models.UtxosResponse
 import io.reactivex.Observable
-import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.http.*
 
 /**
  * Created by danielyakovlev on 1/30/18.
@@ -26,4 +25,8 @@ interface BlockchainInfoService {
             @Query("active", encoded = true) addressesString: String,
             @Query("limit") limit: Int? = null,
             @Query("confirmations") confirmations: Int? = null): Observable<UtxosResponse>
+
+    @FormUrlEncoded
+    @POST("pushtx")
+    fun pushTx(@Field("tx") txHex: String): Observable<String>
 }

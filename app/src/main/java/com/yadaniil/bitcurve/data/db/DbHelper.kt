@@ -2,6 +2,7 @@ package com.yadaniil.bitcurve.data.db
 
 import com.yadaniil.bitcurve.data.db.models.AccountEntity
 import com.yadaniil.bitcurve.data.db.models.TxEntity
+import com.yadaniil.bitcurve.data.db.models.UtxoEntity
 import io.objectbox.android.ObjectBoxLiveData
 
 
@@ -17,4 +18,5 @@ interface DbHelper {
     fun getAccount(accountEntityId: Long): AccountEntity?
     fun deleteAllAccounts()
     fun updateAccount(accountEntity: AccountEntity)
+    fun getAllUtxo(): List<UtxoEntity>
 }

@@ -26,12 +26,12 @@ object Navigator {
         ft.commit()
     }
 
-    fun openQrScanner(activity: AppCompatActivity) {
-        IntentIntegrator(activity)
+    fun openQrScanner(fragment: Fragment) {
+        IntentIntegrator.forSupportFragment(fragment)
                 .setOrientationLocked(false)
                 .setBeepEnabled(false)
                 .setCaptureActivity(ScanQrActivity::class.java)
-                .setPrompt(activity.getString(R.string.scan_qr_description))
+                .setPrompt(fragment.getString(R.string.scan_qr_description))
                 .setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES)
                 .initiateScan()
     }

@@ -40,4 +40,5 @@ class AppDbHelper(private val accountBox: Box<AccountEntity>,
         accountBox.put(accountEntity)
     }
 
+    override fun getAllUtxo(): MutableList<UtxoEntity> = utxoBox.all
 }

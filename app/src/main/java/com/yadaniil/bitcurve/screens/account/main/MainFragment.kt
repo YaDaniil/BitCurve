@@ -6,10 +6,7 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
-import android.view.LayoutInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import com.yadaniil.bitcurve.R
 import com.yadaniil.bitcurve.data.db.models.TxEntity
 import com.yadaniil.bitcurve.utils.DenominationHelper
@@ -17,6 +14,7 @@ import com.yadaniil.bitcurve.utils.visible
 import kotlinx.android.synthetic.main.content_scrolling.*
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.bitcoinj.core.Coin
+import org.jetbrains.anko.alert
 import org.jetbrains.anko.toast
 import org.koin.android.architecture.ext.viewModel
 
@@ -110,6 +108,11 @@ class MainFragment : Fragment(), TxesAdapter.OnTxClick {
 
     private fun showPullToRefreshLoadingError() {
         activity?.toast(R.string.loading_error)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        activity?.menuInflater?.inflate(R.menu.menu_account, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

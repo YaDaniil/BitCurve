@@ -80,7 +80,7 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-scalars:2.2.0'
 
     // region ----------LOGIC-----------
-    compile 'com.android.support:multidex:1.0.2'
+    compile 'com.android.support:multidex:1.0.3'
 
     // RxBindings
     implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
@@ -89,12 +89,9 @@ dependencies {
 
     // Event bus
     compile 'org.greenrobot:eventbus:3.1.1'
-
-    // Multidex
-    compile 'com.android.support:multidex:1.0.2'
-
     // Bitcoinj
     compile files('libs/bitcoinj-core-0.16-SNAPSHOT.jar')
+    compile group: 'org.bitcoinj', name: 'orchid', version: '1.2.1'
     compile group: 'com.madgag.spongycastle', name: 'core', version: '1.54.0.0'
     compile 'org.slf4j:slf4j-android:1.7.7'
     compile 'com.google.protobuf:protobuf-java:3.4.0'
@@ -137,4 +134,8 @@ dependencies {
 
     // Material EditText
     compile 'com.rengwuxian.materialedittext:library:2.1.4'
+
+    compile 'info.hoang8f:android-segmented:1.0.6'
+
+    compile 'com.ramotion.fluidslider:fluid-slider:0.1.1'
 }

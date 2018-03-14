@@ -45,6 +45,7 @@ class AccountsManager(private val repo: Repository) {
                 ChildNumber(accountEntity.accountId.toInt(), true))
 
         val keyChain = DeterministicKeyChain(wallet?.keyChainSeed, accountPath)
+        wallet?.addAndActivateHDChain(keyChain)
         addAccount(accountEntity, keyChain)
     }
 

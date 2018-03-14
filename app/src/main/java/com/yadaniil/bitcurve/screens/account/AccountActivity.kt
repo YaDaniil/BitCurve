@@ -1,5 +1,6 @@
 package com.yadaniil.bitcurve.screens.account
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.yadaniil.bitcurve.R
@@ -45,4 +46,5 @@ class AccountActivity : AppCompatActivity() {
             }
         }
     }
+
 }

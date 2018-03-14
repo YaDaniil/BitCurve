@@ -18,23 +18,6 @@ class SharedPrefs (private val sharedPrefs: SharedPreferences) : SharedPrefsHelp
     private val BLOCKCHAIN_HEIGHT = "blockchain_height"
     // endregion Keys
 
-    override fun saveUtxo(utxo: List<UTXO>) {
-        val gson = Gson()
-        val listOfStrings: MutableList<String> = utxo.mapTo(ArrayList()) { gson.toJson(it) }
-        saveString(KEY_UTXO, JsonUtils.toJson(listOfStrings))
-    }
-
-    override fun getUtxo(): List<UTXO> {
-        val gson = Gson()
-        val utxo: MutableList<UTXO> = ArrayList()
-        val string = getStringByKey(KEY_UTXO)
-        val listOfStrings = JsonUtils.fromJson<List<String>>(string, object : TypeToken<List<String>>() {}.type)
-        for (stringUtxo in (listOfStrings ?: emptyList())) {
-            utxo.add(gson.fromJson<UTXO>(string, UTXO::class.java))
-        }
-        return utxo
-    }
-
     override fun isMnemonicWrittenDown() = getBooleanByKey(IS_MNEMONIC_WRITTEN_DOWN, false)
     override fun setMnemonicWrittenDown(boolean: Boolean) = saveBoolean(IS_MNEMONIC_WRITTEN_DOWN, boolean)
 

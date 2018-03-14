@@ -28,6 +28,8 @@
             android:screenOrientation="portrait"/>
 
         <activity android:name=".screens.account.AccountActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity android:name=".screens.ScanQrActivity"

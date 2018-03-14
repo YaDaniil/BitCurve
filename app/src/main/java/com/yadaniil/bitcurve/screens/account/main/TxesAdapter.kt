@@ -57,7 +57,7 @@ class TxesAdapter(private val onTxClick: OnTxClick,
 
         val formattedAmount = if (tx.isReceived == true)
             "+${DenominationHelper.satoshiToBtc(tx.result)} BTC"
-        else "-${DenominationHelper.satoshiToBtc(tx.result)} BTC"
+        else "${DenominationHelper.satoshiToBtc(tx.result)} BTC"
         holder?.time?.text = DateHelper.buildTxFriendlyDateString(tx, context)
         if(tx.isReceived == true) {
             holder?.fromOrTo?.text = "${context.getString(R.string.from)} ${tx.getFirstReceiver()}"

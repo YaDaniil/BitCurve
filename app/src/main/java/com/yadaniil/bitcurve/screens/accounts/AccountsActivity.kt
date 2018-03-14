@@ -31,7 +31,6 @@ class AccountsActivity : AppCompatActivity(), AccountsAdapter.OnAccountClick {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_accounts)
-
         initMnemonicWarning()
         initAccountsList()
         initPullToRefresh()
