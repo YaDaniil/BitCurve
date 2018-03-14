@@ -46,9 +46,12 @@ class AccountsAdapter(private val onAccountClick: OnAccountClick)
     override fun onBindViewHolder(holder: AccountHolder?, position: Int) {
         val account = accounts[position]
         holder?.label?.text = account.label
-//        holder?.description?.text = "${account?.m}-of-${account?.n}"
+        holder?.description?.text = account.coinType
         holder?.balance?.text = "${DenominationHelper.satoshiToBtc(account.balanceSatoshi)} BTC"
-        holder?.icon?.setImageResource(R.drawable.ic_btc_png)
+        if (account.coinType == "Bitcoin")
+            holder?.icon?.setImageResource(R.drawable.ic_btc_png)
+        else if (account.coinType == "Bitcoin Cash")
+            holder?.icon?.setImageResource(R.drawable.ic_bch_png)
         holder?.rootLayout?.onClick { onAccountClick.onClick(holder, account) }
     }
 

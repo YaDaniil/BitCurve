@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="@dimen/standard_dimen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mnemonic"
+        android:inputType="textMultiLine"
+        android:maxLines="5"
+        android:imeOptions="actionDone"
+        android:hint="@string/mnemonic_phrase"
+        app:met_textColor="@color/black"
+        app:met_baseColor="@color/black"
+        app:met_underlineColor="@color/colorPrimary"
+        app:met_primaryColor="@color/colorPrimary"
+        app:met_floatingLabelTextColor="@color/colorPrimary"
+        app:met_floatingLabel="normal"/>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/word_list">
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

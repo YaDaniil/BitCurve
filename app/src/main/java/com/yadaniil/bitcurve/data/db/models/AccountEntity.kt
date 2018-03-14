@@ -21,6 +21,7 @@ data class AccountEntity(
         var lastUsedReceiveAddressIndex: Int = 0,
         var lastUsedChangeAddressIndex: Int = 0,
         var creationTime: Date? = null,
+        var coinType: String = "",
 
         @Backlink
         var transactions: ToMany<TxEntity>? = null,

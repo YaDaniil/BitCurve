@@ -160,7 +160,7 @@
     },
     {
       "id": "4:2418936013461096037",
-      "lastPropertyId": "11:2516514702015716007",
+      "lastPropertyId": "12:3485936085071193352",
       "name": "AccountEntity",
       "properties": [
         {
@@ -198,6 +198,10 @@
         {
           "id": "11:2516514702015716007",
           "name": "creationTime"
+        },
+        {
+          "id": "12:3485936085071193352",
+          "name": "coinType"
         }
       ],
       "relations": []

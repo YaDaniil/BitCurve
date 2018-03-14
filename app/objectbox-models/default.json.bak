@@ -180,14 +180,6 @@
           "name": "balanceSatoshi"
         },
         {
-          "id": "5:7813380896832828222",
-          "name": "currentReceiveAddress"
-        },
-        {
-          "id": "6:8146050363169255537",
-          "name": "currentChangeAddress"
-        },
-        {
           "id": "7:5289964734108175318",
           "name": "lastIssuedReceiveAddressIndex"
         },
@@ -313,7 +305,10 @@
   "modelVersionParserMinimum": 4,
   "retiredEntityUids": [],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [],
+  "retiredPropertyUids": [
+    7813380896832828222,
+    8146050363169255537
+  ],
   "retiredRelationUids": [],
   "version": 1
 }

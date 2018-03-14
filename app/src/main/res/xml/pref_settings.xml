@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/general">
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/general_auto_update_key"
+            android:title="@string/automatic_update" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:dependency="@string/general_auto_update_key"
+            android:key="@string/general_auto_update_wifi_only_key"
+            android:title="@string/auto_update_wifi_only" />
+
+        <ListPreference
+            android:defaultValue="1 minute"
+            android:dialogTitle="@string/update_interval"
+            android:dependency="@string/general_auto_update_key"
+            android:entries="@array/pref_update_interval_values"
+            android:entryValues="@array/pref_update_interval_values"
+            android:key="@string/key_auto_update_interval"
+            android:summary="@string/summary_auto_update_interval"
+            android:title="@string/auto_update_interval" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/security">
+
+        <Preference
+            android:key="@string/key_show_mnemonic"
+            android:title="@string/show_mnemonic_phrase"
+            android:summary="@string/show_mnemonic_summary" />
+
+        <Preference
+            android:key="@string/key_restore_wallet"
+            android:title="@string/restore_wallet"
+            android:summary="@string/restore_wallet_summary" />
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/general_auto_update_key"
+            android:title="@string/use_fingerprint"
+            android:summary="@string/use_fingerprint_summary"/>
+
+        <Preference
+            android:title="@string/change_password" />
+    </PreferenceCategory>
+
+
+    <PreferenceCategory android:title="@string/pref_header_about">
+
+        <Preference
+            android:selectable="false"
+            android:summary="@string/summary_about" />
+
+        <Preference
+            android:summary="@string/app_version"
+            android:title="@string/title_version" />
+
+        <Preference
+            android:key="@string/key_send_feedback"
+            android:summary="@string/summary_support"
+            android:title="@string/title_send_feedback" />
+
+        <!-- preference opens url in browser -->
+        <Preference
+            android:summary="@string/summary_faq"
+            android:title="@string/title_faq">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/url_faq" />
+        </Preference>
+
+        <Preference android:title="@string/privacy_policy">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/url_privacy" />
+        </Preference>
+
+        <Preference android:title="@string/title_terms">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/url_terms" />
+        </Preference>
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -40,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:fabSize="normal"
-        app:backgroundTint="@color/colorAccentDark"
+        app:backgroundTint="?attr/colorAccent"
         android:id="@+id/add_account_fab"
         android:src="@drawable/ic_add_white_24dp"
         android:layout_alignParentBottom="true"

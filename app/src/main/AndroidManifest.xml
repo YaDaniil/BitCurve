@@ -41,6 +41,15 @@
             tools:replace="screenOrientation">
         </activity>
 
+        <activity android:name=".screens.settings.SettingsActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/settings" />
+
+        <activity android:name=".screens.settings.restore.MnemonicRestoreActivity"
+            android:label="@string/restore_wallet"
+            android:windowSoftInputMode="stateVisible"
+            android:screenOrientation="portrait"/>
+
 
     </application>
 

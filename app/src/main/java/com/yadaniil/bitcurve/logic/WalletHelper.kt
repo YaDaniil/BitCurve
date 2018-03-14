@@ -26,10 +26,13 @@ class WalletHelper (private val context: Context,
     private val DEFAULT_WALLET_DIRECTORY_SUFFIX = "/storageWalletBTC"
     private var btcWallet: Wallet? = null
     private val directoryPath = context.filesDir.path + DEFAULT_WALLET_DIRECTORY_SUFFIX
-    private val walletFile = File(directoryPath)
 
     // region Wallet
     fun getWallet() = btcWallet
+    fun setWallet(wallet: Wallet) {
+        WalletHelper.wallet = wallet
+        btcWallet = wallet
+    }
 
     fun getMnemonic(): String {
         val seed = btcWallet?.keyChainSeed
@@ -43,7 +46,7 @@ class WalletHelper (private val context: Context,
         } else {
             // seed == null
             try {
-                btcWallet = setupWalletFromFile(walletPassword)
+                setWallet(setupWalletFromFile(walletPassword))
             } catch (e: WrongPasswordException) {
                 throw WrongPasswordException()
             } catch (e: UnreadableWalletException) {
@@ -80,12 +83,20 @@ class WalletHelper (private val context: Context,
 
         val resultWallet = Wallet(params, keyChainGroup)
         saveWalletToFile(resultWallet, null)
-        btcWallet = resultWallet
+        setWallet(resultWallet)
 
-        val accountLabel = "My account"
-        val accountEntity = AccountEntity(accountId = 0, label = accountLabel, creationTime = Date())
+        val accountLabel = "My BTC account"
+        val accountEntity = AccountEntity(accountId = 0, label = accountLabel,
+                creationTime = Date(), coinType = "Bitcoin")
         repo.saveNewAccount(accountEntity)
         accountsManager.addAccount(accountEntity, btcWallet)
+
+        // Bitcoin Cash testing
+//        val accountBchLabel = "My BCH account"
+//        val accountBchEntity = AccountEntity(accountId = 0, label = accountBchLabel,
+//                creationTime = Date(), coinType = "Bitcoin Cash")
+//        repo.saveNewAccount(accountBchEntity)
+//        accountsManager.addAccount(accountBchEntity, btcWallet)
     }
 
     private fun saveWalletToFile(wallet: Wallet, password: String?) {
@@ -145,5 +156,12 @@ class WalletHelper (private val context: Context,
                 } else {
                     MainNetParams.get()
                 }
+
+        var wallet: Wallet? = null
     }
+}
+
+fun Wallet?.getMnemonic(): String {
+    val seed = this?.keyChainSeed
+    return Joiner.on(' ').join(seed?.mnemonicCode!!)
 }

@@ -1,5 +1,6 @@
 package com.yadaniil.bitcurve.utils
 
+import android.app.Activity
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import com.google.zxing.integration.android.IntentIntegrator
@@ -7,7 +8,10 @@ import com.yadaniil.bitcurve.R
 import com.yadaniil.bitcurve.logic.Account
 import com.yadaniil.bitcurve.screens.ScanQrActivity
 import com.yadaniil.bitcurve.screens.account.AccountActivity
-import org.jetbrains.anko.startActivity
+import com.yadaniil.bitcurve.screens.accounts.AccountsActivity
+import com.yadaniil.bitcurve.screens.settings.SettingsActivity
+import com.yadaniil.bitcurve.screens.settings.restore.MnemonicRestoreActivity
+import org.jetbrains.anko.*
 
 /**
  * Created by danielyakovlev on 1/15/18.
@@ -38,5 +42,17 @@ object Navigator {
 
     fun toAccountActivity(activity: AppCompatActivity, account: Account) {
         activity.startActivity<AccountActivity>("accountEntityId" to account.accountEntity.id)
+    }
+
+    fun toMnemonicRestoreActivity(activity: Activity) {
+        activity.startActivity<MnemonicRestoreActivity>()
+    }
+
+    fun toAccountsActivity(activity: AppCompatActivity) {
+        activity.startActivity(activity.intentFor<AccountsActivity>().singleTop().clearTask().newTask())
+    }
+
+    fun toSettingsActivity(activity: Activity) {
+        activity.startActivity<SettingsActivity>()
     }
 }
