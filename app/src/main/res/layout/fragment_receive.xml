@@ -20,20 +20,35 @@
 
     </android.support.design.widget.AppBarLayout>
 
-
-    <ImageView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:id="@+id/qr_code"
-        android:layout_gravity="center_horizontal" />
+        android:layout_height="match_parent"
+        android:padding="@dimen/standard_dimen"
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:paddingStart="@dimen/double_dimen"
-        android:paddingEnd="@dimen/double_dimen"
-        android:gravity="center"
-        android:id="@+id/address"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:paddingStart="@dimen/double_dimen"
+            android:paddingEnd="@dimen/double_dimen"
+            android:gravity="center"
+            android:id="@+id/gap_limit"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="360dp"
+            android:id="@+id/qr_code"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:id="@+id/address"/>
+
+
+    </LinearLayout>
 
 </LinearLayout>

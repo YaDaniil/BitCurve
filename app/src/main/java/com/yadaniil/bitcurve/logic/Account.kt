@@ -13,17 +13,6 @@ class Account(var accountEntity: AccountEntity,
               var receiveAddresses: List<Address> = ArrayList(),
               var changeAddresses: List<Address> = ArrayList()) {
 
-    fun getCurrentReceiveAddressForAccount(): Address {
-        val currentReceiveAddressIndex =
-                if (accountEntity.lastUsedReceiveAddressIndex == 0)
-                    0
-                else
-                    accountEntity.lastUsedReceiveAddressIndex + 1
-
-
-        return receiveAddresses[currentReceiveAddressIndex]
-    }
-
     fun haveAddress(firstReceiver: String): Boolean {
         val receiveAddressesString: MutableList<String> = ArrayList()
         receiveAddresses.mapTo(receiveAddressesString) { it.toBase58() }
@@ -31,7 +20,7 @@ class Account(var accountEntity: AccountEntity,
     }
 
     fun stringifyAddresses(): String {
-        val addresses: MutableList<Address> = java.util.ArrayList()
+        val addresses: MutableList<Address> = ArrayList()
         addresses.addAll(receiveAddresses)
         addresses.addAll(changeAddresses)
         val accountAddressesStrings = addresses.map { it.toBase58() }

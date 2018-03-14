@@ -64,6 +64,7 @@ object AccountMapper {
             tx.outputs?.clear()
             tx.outputs?.addAll(outputs)
 
+            // TODO consider to determine isReceived from from it.result number sign
             tx.isReceived = account.haveAddress(tx.getFirstReceiver())
 
             txes.add(tx)

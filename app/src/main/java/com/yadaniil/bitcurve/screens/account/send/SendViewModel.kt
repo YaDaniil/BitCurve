@@ -40,12 +40,13 @@ class SendViewModel(private val walletHelper: WalletHelper,
                 }, {
                     val error = it.message ?: ""
                     Timber.e("Push tx error: $error")
-
-                    if (it != null && error.contains("Very Small")) {
+                    
+                    if (error.contains("Very Small")) {
                         Timber.e("Push tx error: TooSmallFeeException")
                         throw TooSmallFeeException("Too small fee")
+                    } else if (error.contains("500")) {
+
                     }
                 })
-
     }
 }

@@ -16,8 +16,6 @@ data class AccountEntity(
         var accountId: Long = 0,
         var label: String = "",
         var balanceSatoshi: Long = 0,
-        var currentReceiveAddress: String? = null,
-        var currentChangeAddress: String? = null,
         var lastIssuedReceiveAddressIndex: Int = 0,
         var lastIssuedChangeAddressIndex: Int = 0,
         var lastUsedReceiveAddressIndex: Int = 0,

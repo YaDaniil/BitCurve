@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.github.pavlospt.roundedletterview.RoundedLetterView
@@ -47,7 +48,7 @@ class AccountsAdapter(private val onAccountClick: OnAccountClick)
         holder?.label?.text = account.label
 //        holder?.description?.text = "${account?.m}-of-${account?.n}"
         holder?.balance?.text = "${DenominationHelper.satoshiToBtc(account.balanceSatoshi)} BTC"
-        holder?.letterView?.titleText = account.label[0].toString()
+        holder?.icon?.setImageResource(R.drawable.ic_btc_png)
         holder?.rootLayout?.onClick { onAccountClick.onClick(holder, account) }
     }
 
@@ -56,7 +57,7 @@ class AccountsAdapter(private val onAccountClick: OnAccountClick)
         var description: TextView = view.find(R.id.description)
         var balance: TextView = view.find(R.id.account_balance)
         var rootLayout: LinearLayout = view.find(R.id.root_layout)
-        var letterView: RoundedLetterView = view.find(R.id.rlv_name_view)
+        var icon: ImageView = view.find(R.id.coin_icon)
 
     }
 }

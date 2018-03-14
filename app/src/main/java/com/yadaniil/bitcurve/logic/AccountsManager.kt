@@ -56,7 +56,7 @@ class AccountsManager(private val repo: Repository) {
         }
 
         val account = Account(accountEntity, keyChain)
-        initReceiveAddressesForAccount(account)
+        initAddressesForAccount(account)
         accounts?.add(account)
     }
 
@@ -65,21 +65,12 @@ class AccountsManager(private val repo: Repository) {
         return accounts?.last()?.accountEntity?.accountId?.plus(1) ?: 0
     }
 
-    fun getAccountById(accountId: Long): Account? {
-        accounts?.forEach {
-            if (it.accountEntity.accountId == accountId)
-                return it
-        }
-        return null
-    }
+    fun getAccountById(accountId: Long) =
+            accounts?.find { it.accountEntity.accountId == accountId }
 
-    fun getAccountByEntityId(accountEntityId: Long): Account? {
-        accounts?.forEach {
-            if (it.accountEntity.id == accountEntityId)
-                return it
-        }
-        return null
-    }
+    fun getAccountByEntityId(accountEntityId: Long) =
+            accounts?.find { it.accountEntity.id == accountEntityId }
+
 
     fun deleteAllAccounts() {
         accounts?.clear()
@@ -88,32 +79,17 @@ class AccountsManager(private val repo: Repository) {
     // endregion Accounts
 
     // region Addresses
-    private fun initAddresses() {
-        accounts?.forEach {
-            initReceiveAddressesForAccount(it)
-        }
-    }
-
-    fun getCurrentReceiveAddressForAccount(accountId: Long) =
-            getAccountById(accountId)?.accountEntity?.currentReceiveAddress
-
-    fun getCurrentChangeAddressForAccount(accountId: Long) =
-            getAccountById(accountId)?.accountEntity?.currentChangeAddress
-
-    fun getFreshReceiveAddressForAccount(accountId: Long): String {
-        repo.getAllAccounts()
-        return getAccountById(accountId)?.accountEntity?.currentReceiveAddress ?: ""
-    }
-
-    private fun initReceiveAddressesForAccount(account: Account) {
+    private fun initAddressesForAccount(account: Account) {
         val receiveAddresses: MutableList<Address> = ArrayList()
-        val receiveDeterministicKeys = account.keyChain.getKeys(KeyChain.KeyPurpose.RECEIVE_FUNDS, 20)
+        val receiveDeterministicKeys = account.keyChain
+                .getKeys(KeyChain.KeyPurpose.RECEIVE_FUNDS, INITIAL_LOOKAHEAD)
         receiveDeterministicKeys.forEach {
             receiveAddresses += it.toAddress(params)
         }
 
         val changeAddresses: MutableList<Address> = ArrayList()
-        val changeDeterministicKeys = account.keyChain.getKeys(KeyChain.KeyPurpose.CHANGE, 20)
+        val changeDeterministicKeys = account.keyChain
+                .getKeys(KeyChain.KeyPurpose.CHANGE, INITIAL_LOOKAHEAD)
         changeDeterministicKeys.forEach {
             changeAddresses += it.toAddress(params)
         }
@@ -121,8 +97,35 @@ class AccountsManager(private val repo: Repository) {
         account.receiveAddresses = receiveAddresses.toList()
         account.changeAddresses = changeAddresses.toList()
     }
-    // endregion Addresses
 
+    fun getCurrentReceiveAddressOfAccount(accountEntityId: Long): Address? {
+        val account = getAccountByEntityId(accountEntityId)
+        return account?.let { it.receiveAddresses[it.accountEntity.lastIssuedReceiveAddressIndex] }
+    }
+
+    @Throws(FullGapLimitException::class)
+    fun getFreshReceiveAddressOfAccount(accountEntityId: Long): Address? {
+        val account = getAccountByEntityId(accountEntityId)
+        val newLastIssuedReceiveAddressIndex = account?.accountEntity
+                ?.lastIssuedReceiveAddressIndex?.plus(1) ?: 0
+
+        // Check if gap limit will be exceeded
+        try {
+            account?.let { it.receiveAddresses[newLastIssuedReceiveAddressIndex] }
+        } catch (e: IndexOutOfBoundsException) {
+            throw FullGapLimitException()
+        }
+
+        account?.let {
+            val updatedAccountEntity = it.accountEntity
+                    .copy(lastIssuedReceiveAddressIndex = newLastIssuedReceiveAddressIndex)
+            repo.updateAccount(updatedAccountEntity)
+            it.accountEntity = updatedAccountEntity
+        }
+
+        return getCurrentReceiveAddressOfAccount(accountEntityId)
+    }
+    // endregion Addresses
 
 
 }
