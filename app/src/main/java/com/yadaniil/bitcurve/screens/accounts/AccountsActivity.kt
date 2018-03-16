@@ -9,11 +9,13 @@ import android.view.Menu
 import android.view.MenuItem
 import com.yadaniil.bitcurve.R
 import com.yadaniil.bitcurve.data.db.models.AccountEntity
+import com.yadaniil.bitcurve.screens.add.AddAccountActivity
 import com.yadaniil.bitcurve.utils.Navigator
 import com.yadaniil.bitcurve.utils.visible
 import kotlinx.android.synthetic.main.activity_accounts.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.onClick
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import org.koin.android.architecture.ext.viewModel
 
@@ -85,7 +87,7 @@ class AccountsActivity : AppCompatActivity(), AccountsAdapter.OnAccountClick {
 
     private fun initAddNewAccountFab() {
         add_account_fab.onClick {
-//            startActivity<AddAccountActivity>()
+            startActivity<AddAccountActivity>()
         }
     }
     // endregion Init

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:id="@+id/picker_ltc"
+    android:layout_marginTop="@dimen/half_standard_dimen"
+    android:layout_height="60dp">
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_weight="1.4"
+        android:layout_marginTop="@dimen/half_standard_dimen"
+        android:layout_marginStart="@dimen/standard_dimen"
+        android:layout_marginBottom="@dimen/half_standard_dimen"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_ltc"
+        android:id="@+id/ltc_icon"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:textStyle="bold"
+        android:singleLine="true"
+        android:gravity="center"
+        android:text="LTC"
+        android:id="@+id/ltc_symbol"
+        android:textSize="@dimen/item_currency_text_size"
+        android:layout_margin="@dimen/half_standard_dimen"
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="6"
+        android:singleLine="true"
+        android:gravity="center_vertical"
+        android:text="Litecoin"
+        android:textSize="@dimen/item_currency_text_size"
+        android:id="@+id/ltc_name"
+        android:layout_margin="@dimen/half_standard_dimen"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

@@ -50,6 +50,9 @@
             android:windowSoftInputMode="stateVisible"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".screens.add.AddAccountActivity"
+            android:label="@string/add_account"
+            android:screenOrientation="portrait"/>
 
     </application>
 

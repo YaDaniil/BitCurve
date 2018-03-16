@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/account_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/standard_margin"
+        android:inputType="textCapSentences"
+        android:maxLines="1"
+        android:singleLine="true"
+        app:met_floatingLabelTextColor="@color/colorPrimary"
+        app:met_floatingLabel="normal"
+        android:hint="@string/account_name"
+        app:met_baseColor="@color/gray_54_sec_text_icons"
+        app:met_underlineColor="@color/gray_54_sec_text_icons"
+        app:met_primaryColor="@color/gray_54_sec_text_icons" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/account_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/standard_margin"
+        android:layout_marginEnd="@dimen/standard_margin"
+        android:inputType="textCapSentences|textMultiLine"
+        android:maxLines="2"
+        app:met_floatingLabelTextColor="@color/colorPrimary"
+        app:met_floatingLabel="normal"
+        android:hint="@string/description"
+        app:met_baseColor="@color/gray_54_sec_text_icons"
+        app:met_underlineColor="@color/gray_54_sec_text_icons"
+        app:met_primaryColor="@color/gray_54_sec_text_icons" />
+
+    <include layout="@layout/item_currency"
+        android:layout_height="@dimen/item_currency_height"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/standard_margin"/>
+
+</LinearLayout>
+

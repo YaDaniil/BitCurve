@@ -19,4 +19,6 @@
     <dimen name="standard_margin">16dp</dimen>
     <dimen name="amount_small_text_size">16sp</dimen>
     <dimen name="quater_standard_dimen">6dp</dimen>
+    <dimen name="item_currency_height">60dp</dimen>
+    <dimen name="item_currency_text_size">16sp</dimen>
 </resources>

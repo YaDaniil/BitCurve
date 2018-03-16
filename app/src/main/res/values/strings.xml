@@ -104,5 +104,8 @@
     <string name="automatic_update">Automatic update</string>
     <string name="title_vibrate">Vibrate</string>
     <string name="summary_vibrate">Vibrate on new notification</string>
+    <string name="add_account">Add account</string>
+    <string name="account_name">Account name</string>
+    <string name="description">Description</string>
 
 </resources>
