@@ -1,6 +1,5 @@
 package com.yadaniil.bitcurve.screens.settings
 
-import android.arch.lifecycle.LifecycleObserver
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
