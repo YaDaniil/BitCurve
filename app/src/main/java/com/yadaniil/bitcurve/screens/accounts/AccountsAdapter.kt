@@ -7,10 +7,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.github.pavlospt.roundedletterview.RoundedLetterView
 import com.yadaniil.bitcurve.R
 import com.yadaniil.bitcurve.data.db.models.AccountEntity
-import com.yadaniil.bitcurve.logic.AccountsManager
 import com.yadaniil.bitcurve.logic.Bitcoin
 import com.yadaniil.bitcurve.logic.BitcoinCash
 import com.yadaniil.bitcurve.logic.Litecoin
@@ -54,8 +52,8 @@ class AccountsAdapter(private val onAccountClick: OnAccountClick)
         holder?.balance?.text = "${DenominationHelper.satoshiToBtc(account.balanceSatoshi)} BTC"
 
         when (account.coinType) {
-            Bitcoin().name -> holder?.icon?.setImageResource(R.drawable.ic_btc_png)
-            BitcoinCash().name -> holder?.icon?.setImageResource(R.drawable.ic_bch_png)
+            Bitcoin().name -> holder?.icon?.setImageResource(R.drawable.ic_btc)
+            BitcoinCash().name -> holder?.icon?.setImageResource(R.drawable.ic_bch_green)
             Litecoin().name -> holder?.icon?.setImageResource(R.drawable.ic_ltc)
         }
 

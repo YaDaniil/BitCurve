@@ -6,7 +6,6 @@ import android.support.design.widget.BottomSheetBehavior
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.LinearLayout
 import com.yadaniil.bitcurve.R
 import com.yadaniil.bitcurve.utils.Navigator
 import com.yadaniil.bitcurve.utils.hideKeyboard
@@ -15,9 +14,7 @@ import kotlinx.android.synthetic.main.coin_picker_bch_item_layout.*
 import kotlinx.android.synthetic.main.coin_picker_bottom_sheet.*
 import kotlinx.android.synthetic.main.coin_picker_btc_item_layout.*
 import kotlinx.android.synthetic.main.coin_picker_ltc_item_layout.*
-import kotlinx.android.synthetic.main.item_account.*
 import kotlinx.android.synthetic.main.item_currency.*
-import org.jetbrains.anko.find
 import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.onClick
 import org.jetbrains.anko.toast
@@ -41,7 +38,7 @@ class AddAccountActivity : AppCompatActivity() {
     }
 
     private fun initCurrencyPicker() {
-        currency_icon.setImageResource(R.drawable.ic_btc_png)
+        currency_icon.setImageResource(R.drawable.ic_btc)
         currency_symbol.text = "BTC"
         currency_name.text = "Bitcoin"
 
@@ -59,14 +56,14 @@ class AddAccountActivity : AppCompatActivity() {
 
 
         picker_btc.onClick {
-            currency_icon.setImageResource(R.drawable.ic_btc_png)
+            currency_icon.setImageResource(R.drawable.ic_btc)
             currency_symbol.text = "BTC"
             currency_name.text = "Bitcoin"
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN)
         }
 
         picker_bch.onClick {
-            currency_icon.setImageResource(R.drawable.ic_bch_png)
+            currency_icon.setImageResource(R.drawable.ic_bch_green)
             currency_symbol.text = "BCH"
             currency_name.text = "Bitcoin Cash"
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN)
