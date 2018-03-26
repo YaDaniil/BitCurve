@@ -2,6 +2,7 @@ package com.yadaniil.bitcurve.logic
 
 import com.yadaniil.bitcurve.data.Repository
 import org.bitcoinj.core.*
+import org.bitcoinj.core.Coin
 import org.bitcoinj.script.Script
 import java.math.BigInteger
 import kotlin.collections.ArrayList

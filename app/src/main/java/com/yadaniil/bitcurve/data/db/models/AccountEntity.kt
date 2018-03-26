@@ -1,9 +1,13 @@
 package com.yadaniil.bitcurve.data.db.models
 
+import com.yadaniil.bitcurve.logic.Bitcoin
+import com.yadaniil.bitcurve.logic.BitcoinCash
+import com.yadaniil.bitcurve.logic.Litecoin
 import io.objectbox.annotation.Backlink
 import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
 import io.objectbox.relation.ToMany
+import org.bitcoinj.core.Coin
 import java.util.*
 
 /**
@@ -28,4 +32,11 @@ data class AccountEntity(
 
         @Backlink
         var utxos: ToMany<UtxoEntity>? = null
-)
+) {
+        fun getCoin() = when(coinType) {
+                Bitcoin().name -> Bitcoin()
+                BitcoinCash().name -> BitcoinCash()
+                Litecoin().name -> Litecoin()
+                else -> Bitcoin()
+        }
+}

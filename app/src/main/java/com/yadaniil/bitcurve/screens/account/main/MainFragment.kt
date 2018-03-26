@@ -48,7 +48,8 @@ class MainFragment : Fragment(), TxesAdapter.OnTxClick {
             val account = it?.first()
             wallet_name_text_view.text = account?.label
             collapsing_toolbar.title = DenominationHelper.satoshiToBtc(
-                    Coin.valueOf(account?.balanceSatoshi ?: 0)).toPlainString() + " BTC"
+                    Coin.valueOf(account?.balanceSatoshi ?: 0)).toPlainString() + " ${account?.getCoin()?.ticker}"
+            account?.getCoin()?.icon?.let { coin_icon.setImageResource(it) }
         })
     }
 

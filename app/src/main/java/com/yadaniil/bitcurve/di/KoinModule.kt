@@ -70,7 +70,7 @@ val viewModelModule = applicationContext {
     viewModel { AccountsViewModel(get(), get(), get()) }
     viewModel { MainViewModel(get(), get()) }
     viewModel { SendViewModel(get(), get(), get()) }
-    viewModel { AddAccountViewModel() }
+    viewModel { AddAccountViewModel(get(), get(), get()) }
 }
 
 val netModule = applicationContext {

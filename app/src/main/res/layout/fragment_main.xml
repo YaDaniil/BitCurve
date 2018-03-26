@@ -28,10 +28,10 @@
                 android:layout_height="60dp"
                 app:layout_collapseMode="pin"
                 android:layout_gravity="bottom"
+                android:id="@+id/coin_icon"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 android:layout_marginStart="@dimen/double_margin"
-                android:layout_marginBottom="46dp"
-                android:src="@drawable/ic_btc_png"/>
+                android:layout_marginBottom="46dp" />
 
             <TextView
                 android:id="@+id/wallet_name_text_view"

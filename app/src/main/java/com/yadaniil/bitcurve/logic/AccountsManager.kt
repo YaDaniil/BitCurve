@@ -35,9 +35,16 @@ class AccountsManager(private val repo: Repository) {
     fun getAllAccounts() = accounts?.toList() ?: emptyList()
 
     fun addAccount(accountEntity: AccountEntity, wallet: Wallet?) {
-        val coinType = if (Application.isTestnet)
+        val coinType = if (Application.isTestnet) {
             ChildNumber(1, true)
-        else ChildNumber.ZERO_HARDENED
+        } else {
+            when (accountEntity.coinType) {
+                Bitcoin().name -> ChildNumber.ZERO_HARDENED
+                BitcoinCash().name -> ChildNumber(BitcoinCash().coinPath, true)
+                Litecoin().name -> ChildNumber(Litecoin().coinPath, true)
+                else -> ChildNumber.ZERO_HARDENED
+            }
+        }
 
         val accountPath = ImmutableList.of(
                 ChildNumber(44, true),
@@ -126,7 +133,6 @@ class AccountsManager(private val repo: Repository) {
         return getCurrentReceiveAddressOfAccount(accountEntityId)
     }
     // endregion Addresses
-
 
 }
 

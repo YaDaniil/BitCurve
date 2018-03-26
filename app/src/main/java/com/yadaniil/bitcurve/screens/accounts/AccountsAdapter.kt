@@ -10,6 +10,10 @@ import android.widget.TextView
 import com.github.pavlospt.roundedletterview.RoundedLetterView
 import com.yadaniil.bitcurve.R
 import com.yadaniil.bitcurve.data.db.models.AccountEntity
+import com.yadaniil.bitcurve.logic.AccountsManager
+import com.yadaniil.bitcurve.logic.Bitcoin
+import com.yadaniil.bitcurve.logic.BitcoinCash
+import com.yadaniil.bitcurve.logic.Litecoin
 import com.yadaniil.bitcurve.utils.DenominationHelper
 import org.jetbrains.anko.find
 import org.jetbrains.anko.onClick
@@ -48,10 +52,13 @@ class AccountsAdapter(private val onAccountClick: OnAccountClick)
         holder?.label?.text = account.label
         holder?.description?.text = account.coinType
         holder?.balance?.text = "${DenominationHelper.satoshiToBtc(account.balanceSatoshi)} BTC"
-        if (account.coinType == "Bitcoin")
-            holder?.icon?.setImageResource(R.drawable.ic_btc_png)
-        else if (account.coinType == "Bitcoin Cash")
-            holder?.icon?.setImageResource(R.drawable.ic_bch_png)
+
+        when (account.coinType) {
+            Bitcoin().name -> holder?.icon?.setImageResource(R.drawable.ic_btc_png)
+            BitcoinCash().name -> holder?.icon?.setImageResource(R.drawable.ic_bch_png)
+            Litecoin().name -> holder?.icon?.setImageResource(R.drawable.ic_ltc)
+        }
+
         holder?.rootLayout?.onClick { onAccountClick.onClick(holder, account) }
     }
 
