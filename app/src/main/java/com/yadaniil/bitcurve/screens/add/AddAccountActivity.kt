@@ -7,6 +7,9 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.yadaniil.bitcurve.R
+import com.yadaniil.bitcurve.logic.Bitcoin
+import com.yadaniil.bitcurve.logic.BitcoinCash
+import com.yadaniil.bitcurve.logic.Litecoin
 import com.yadaniil.bitcurve.utils.Navigator
 import com.yadaniil.bitcurve.utils.hideKeyboard
 import kotlinx.android.synthetic.main.activity_add_account_fields.*
@@ -38,9 +41,9 @@ class AddAccountActivity : AppCompatActivity() {
     }
 
     private fun initCurrencyPicker() {
-        currency_icon.setImageResource(R.drawable.ic_btc)
-        currency_symbol.text = "BTC"
-        currency_name.text = "Bitcoin"
+        currency_icon.setImageResource(Bitcoin().icon)
+        currency_symbol.text = Bitcoin().ticker
+        currency_name.text = Bitcoin().name
 
         val bottomSheetBehavior = BottomSheetBehavior.from(coin_picker_bottom_sheet)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
@@ -54,25 +57,26 @@ class AddAccountActivity : AppCompatActivity() {
             }
         }
 
-
         picker_btc.onClick {
-            currency_icon.setImageResource(R.drawable.ic_btc)
-            currency_symbol.text = "BTC"
-            currency_name.text = "Bitcoin"
+            currency_icon.setImageResource(Bitcoin().icon)
+            currency_symbol.text = Bitcoin().ticker
+            currency_name.text = Bitcoin().name
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN)
         }
 
         picker_bch.onClick {
-            currency_icon.setImageResource(R.drawable.ic_bch_green)
-            currency_symbol.text = "BCH"
-            currency_name.text = "Bitcoin Cash"
+            toast(R.string.bch_is_not_supported_yet)
+//            currency_icon.setImageResource(BitcoinCash().icon)
+//            currency_symbol.text = BitcoinCash().ticker
+//            currency_name.text = BitcoinCash().name
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN)
         }
 
         picker_ltc.onClick {
-            currency_icon.setImageResource(R.drawable.ic_ltc)
-            currency_symbol.text = "LTC"
-            currency_name.text = "Litecoin"
+            toast(R.string.ltc_is_not_supported_yet)
+//            currency_icon.setImageResource(Litecoin().icon)
+//            currency_symbol.text = Litecoin().ticker
+//            currency_name.text = Litecoin().name
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN)
         }
     }

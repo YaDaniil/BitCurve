@@ -67,9 +67,10 @@ class AccountsManager(private val repo: Repository) {
         accounts?.add(account)
     }
 
-    fun getIdForNewAccount(): Long {
-        if (accounts == null || accounts!!.isEmpty()) return 0
-        return accounts?.last()?.accountEntity?.accountId?.plus(1) ?: 0
+    fun getIdForNewAccount(coinType: String): Long {
+        val accounts = getAllAccounts().filter { it.accountEntity.coinType == coinType }
+        if (accounts.isEmpty()) return 0
+        return accounts.last().accountEntity.accountId.plus(1)
     }
 
     fun getAccountById(accountId: Long) =

@@ -27,8 +27,11 @@ class AddAccountViewModel(private val accountsManager: AccountsManager,
         isAccountCreatedLiveData = MutableLiveData()
 
         Completable.fromAction {
-            val accountEntity = AccountEntity(accountId = accountsManager.getIdForNewAccount(), label = accountLabel,
-                    creationTime = Date(), coinType = coinType)
+            val accountEntity = AccountEntity(
+                    accountId = accountsManager.getIdForNewAccount(coinType),
+                    label = accountLabel,
+                    creationTime = Date(),
+                    coinType = coinType)
             repo.saveNewAccount(accountEntity)
             accountsManager.addAccount(accountEntity, walletHelper.getWallet())
         }.subscribeOn(Schedulers.io())

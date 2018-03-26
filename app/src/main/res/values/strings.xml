@@ -107,5 +107,7 @@
     <string name="add_account">Add account</string>
     <string name="account_name">Account name</string>
     <string name="description">Description</string>
+    <string name="bch_is_not_supported_yet">Bitcoin Cash is not supported yet</string>
+    <string name="ltc_is_not_supported_yet">Litecoin is not supported yet</string>
 
 </resources>
