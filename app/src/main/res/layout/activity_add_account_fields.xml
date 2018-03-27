@@ -30,7 +30,7 @@
         android:maxLines="2"
         app:met_floatingLabelTextColor="@color/colorPrimary"
         app:met_floatingLabel="normal"
-        android:hint="@string/description"
+        android:hint="@string/description_optional"
         app:met_baseColor="@color/gray_54_sec_text_icons"
         app:met_underlineColor="@color/gray_54_sec_text_icons"
         app:met_primaryColor="@color/gray_54_sec_text_icons" />

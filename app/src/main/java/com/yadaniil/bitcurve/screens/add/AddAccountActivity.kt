@@ -8,9 +8,9 @@ import android.view.Menu
 import android.view.MenuItem
 import com.yadaniil.bitcurve.R
 import com.yadaniil.bitcurve.logic.Bitcoin
-import com.yadaniil.bitcurve.logic.BitcoinCash
-import com.yadaniil.bitcurve.logic.Litecoin
 import com.yadaniil.bitcurve.utils.Navigator
+import com.yadaniil.bitcurve.utils.disable
+import com.yadaniil.bitcurve.utils.enable
 import com.yadaniil.bitcurve.utils.hideKeyboard
 import kotlinx.android.synthetic.main.activity_add_account_fields.*
 import kotlinx.android.synthetic.main.coin_picker_bch_item_layout.*
@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.coin_picker_ltc_item_layout.*
 import kotlinx.android.synthetic.main.item_currency.*
 import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.onClick
+import org.jetbrains.anko.textChangedListener
 import org.jetbrains.anko.toast
 import org.koin.android.architecture.ext.viewModel
 
@@ -30,14 +31,19 @@ import org.koin.android.architecture.ext.viewModel
 class AddAccountActivity : AppCompatActivity() {
 
     private val viewModel by viewModel<AddAccountViewModel>()
+    private lateinit var doneMenuItem: MenuItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_account)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         initCurrencyPicker()
+        account_name.textChangedListener {
+            afterTextChanged {
+                it?.let { if (it.isBlank()) doneMenuItem.disable() else doneMenuItem.enable() }
+            }
+        }
     }
 
     private fun initCurrencyPicker() {
@@ -83,6 +89,8 @@ class AddAccountActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_check, menu)
+        doneMenuItem = menu?.findItem(R.id.action_done)!!
+        doneMenuItem.disable()
         return true
     }
 

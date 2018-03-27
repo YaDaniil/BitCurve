@@ -5,6 +5,7 @@ import com.yadaniil.bitcurve.data.api.BlockchainInfoService
 import com.yadaniil.bitcurve.data.db.AppDbHelper
 import com.yadaniil.bitcurve.data.db.DbHelper
 import com.yadaniil.bitcurve.data.db.models.AccountEntity
+import com.yadaniil.bitcurve.data.db.models.TxEntity
 import com.yadaniil.bitcurve.data.db.models.UtxoEntity
 import com.yadaniil.bitcurve.data.prefs.SharedPrefs
 import com.yadaniil.bitcurve.data.prefs.SharedPrefsHelper
@@ -40,6 +41,10 @@ class Repository constructor(private val db: AppDbHelper,
     override fun updateAccount(accountEntity: AccountEntity) = db.updateAccount(accountEntity)
 
     override fun getAllUtxo() = db.getAllUtxo()
+
+    override fun getTx(txEntityId: Long) = db.getTx(txEntityId)
+
+    override fun getAccountEntityIdOfTx(txEntityId: Long) = db.getAccountEntityIdOfTx(txEntityId)
     // endregion Db
 
     // region Api

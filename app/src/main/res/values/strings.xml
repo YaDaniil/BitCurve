@@ -106,8 +106,27 @@
     <string name="summary_vibrate">Vibrate on new notification</string>
     <string name="add_account">Add account</string>
     <string name="account_name">Account name</string>
-    <string name="description">Description</string>
+    <string name="description_optional">Description (optional)</string>
     <string name="bch_is_not_supported_yet">Bitcoin Cash is not supported yet</string>
     <string name="ltc_is_not_supported_yet">Litecoin is not supported yet</string>
+    <string name="transaction">Transaction</string>
+    <string name="sent">Sent</string>
+    <string name="to_lowercase">to</string>
+    <string name="received">Received</string>
+    <string name="from_lowercase">from</string>
+    <string name="time_and_date">Time and date</string>
+    <string name="transaction_hash">Transaction hash</string>
+    <string name="hash_copied_to_clipboard">Hash copied to clipboard</string>
+    <string name="show_tx_url" translatable="false">https://blockchain.info/tx/%s</string>
+    <string name="transaction_size">Transaction size</string>
+    <string name="account_balance">Account balance</string>
+    <string name="bytes">bytes</string>
+    <string name="satoshi_lowercase">satoshi</string>
+    <string name="byte_lowercase">byte</string>
+    <string name="status">Status</string>
+    <string name="pending">Pending</string>
+    <string name="confirmed">Confirmed</string>
+    <string name="inputs">Inputs</string>
+    <string name="outputs">Outputs</string>
 
 </resources>

@@ -19,4 +19,6 @@ interface DbHelper {
     fun deleteAllAccounts()
     fun updateAccount(accountEntity: AccountEntity)
     fun getAllUtxo(): List<UtxoEntity>
+    fun getTx(txEntityId: Long): TxEntity
+    fun getAccountEntityIdOfTx(txEntityId: Long): Long
 }

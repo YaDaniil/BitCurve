@@ -23,6 +23,7 @@ import com.yadaniil.bitcurve.screens.account.send.SendViewModel
 import com.yadaniil.bitcurve.screens.accounts.AccountsViewModel
 import com.yadaniil.bitcurve.screens.add.AddAccountViewModel
 import com.yadaniil.bitcurve.screens.splash.SplashViewModel
+import com.yadaniil.bitcurve.screens.tx.TxViewModel
 import io.objectbox.BoxStore
 import okhttp3.Cache
 import okhttp3.OkHttpClient
@@ -71,6 +72,7 @@ val viewModelModule = applicationContext {
     viewModel { MainViewModel(get(), get()) }
     viewModel { SendViewModel(get(), get(), get()) }
     viewModel { AddAccountViewModel(get(), get(), get()) }
+    viewModel { TxViewModel(get()) }
 }
 
 val netModule = applicationContext {

@@ -11,6 +11,7 @@ import com.yadaniil.bitcurve.screens.account.AccountActivity
 import com.yadaniil.bitcurve.screens.accounts.AccountsActivity
 import com.yadaniil.bitcurve.screens.settings.SettingsActivity
 import com.yadaniil.bitcurve.screens.settings.restore.MnemonicRestoreActivity
+import com.yadaniil.bitcurve.screens.tx.TxActivity
 import org.jetbrains.anko.*
 
 /**
@@ -54,5 +55,9 @@ object Navigator {
 
     fun toSettingsActivity(activity: Activity) {
         activity.startActivity<SettingsActivity>()
+    }
+
+    fun toTxActivity(activity: AppCompatActivity, id: Long) {
+        activity.startActivity<TxActivity>("txEntityId" to id)
     }
 }

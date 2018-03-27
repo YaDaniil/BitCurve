@@ -37,27 +37,27 @@ class AccountsAdapter(private val onAccountClick: OnAccountClick)
 
     fun getAccounts() = accounts
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): AccountHolder {
-        val view = LayoutInflater.from(parent?.context)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AccountHolder {
+        val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_account, parent, false)
         return AccountHolder(view)
     }
 
     override fun getItemCount() = accounts.size
 
-    override fun onBindViewHolder(holder: AccountHolder?, position: Int) {
+    override fun onBindViewHolder(holder: AccountHolder, position: Int) {
         val account = accounts[position]
-        holder?.label?.text = account.label
-        holder?.description?.text = account.coinType
-        holder?.balance?.text = "${DenominationHelper.satoshiToBtc(account.balanceSatoshi)} BTC"
+        holder.label.text = account.label
+        holder.description.text = account.coinType
+        holder.balance.text = "${DenominationHelper.satoshiToBtc(account.balanceSatoshi)} BTC"
 
         when (account.coinType) {
-            Bitcoin().name -> holder?.icon?.setImageResource(R.drawable.ic_btc)
-            BitcoinCash().name -> holder?.icon?.setImageResource(R.drawable.ic_bch_green)
-            Litecoin().name -> holder?.icon?.setImageResource(R.drawable.ic_ltc)
+            Bitcoin().name -> holder.icon.setImageResource(R.drawable.ic_btc)
+            BitcoinCash().name -> holder.icon.setImageResource(R.drawable.ic_bch_green)
+            Litecoin().name -> holder.icon.setImageResource(R.drawable.ic_ltc)
         }
 
-        holder?.rootLayout?.onClick { onAccountClick.onClick(holder, account) }
+        holder.rootLayout.onClick { onAccountClick.onClick(holder, account) }
     }
 
     class AccountHolder(view: View) : RecyclerView.ViewHolder(view) {

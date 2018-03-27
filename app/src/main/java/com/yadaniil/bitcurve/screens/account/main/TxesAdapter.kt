@@ -42,15 +42,14 @@ class TxesAdapter(private val onTxClick: OnTxClick,
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): TxHolder {
-        val view = LayoutInflater.from(parent?.context)
-                .inflate(R.layout.item_tx, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TxHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_tx, parent, false)
         return TxHolder(view)
     }
 
     override fun getItemCount() = txes.size
 
-    override fun onBindViewHolder(holder: TxHolder?, position: Int) {
+    override fun onBindViewHolder(holder: TxHolder, position: Int) {
         val tx = txes[position]
         val confirmationsCount = tx.getTxConfirmationsCount(blockchainHeight)
         val isTxPending = tx.blockHeight <= 0 || confirmationsCount < TxEntity.CONFIRMATIONS_TO_BE_CONFIRMED
@@ -58,18 +57,19 @@ class TxesAdapter(private val onTxClick: OnTxClick,
         val formattedAmount = if (tx.isReceived == true)
             "+${DenominationHelper.satoshiToBtc(tx.result)} BTC"
         else "${DenominationHelper.satoshiToBtc(tx.result)} BTC"
-        holder?.time?.text = DateHelper.buildTxFriendlyDateString(tx, context)
+        holder.time?.text = DateHelper.buildTxFriendlyDateString(tx, context)
         if(tx.isReceived == true) {
-            holder?.fromOrTo?.text = "${context.getString(R.string.from)} ${tx.getFirstReceiver()}"
-            holder?.amount?.background= context.resources.getDrawable(R.drawable.amount_income_background)
-            holder?.amount?.text = formattedAmount
+            holder.fromOrTo?.text = "${context.getString(R.string.from)} ${tx.getFirstReceiver()}"
+            holder.amount?.background= context.resources.getDrawable(R.drawable.amount_income_background)
+            holder.amount?.text = formattedAmount
         } else {
-            holder?.amount?.background = context.resources.getDrawable(R.drawable.amount_outcome_background)
-            holder?.fromOrTo?.text = "${context.getString(R.string.to)} ${tx.getSender()}"
-            holder?.amount?.text = formattedAmount
+            holder.amount?.background = context.resources.getDrawable(R.drawable.amount_outcome_background)
+            holder.fromOrTo?.text = "${context.getString(R.string.to)} ${tx.getSender()}"
+            holder.amount?.text = formattedAmount
         }
+        if (isTxPending) holder.amount?.background = context.resources.getDrawable(R.drawable.amount_pending_background)
 
-        holder?.itemLayout?.onClick { onTxClick.onClick(holder, tx) }
+        holder.itemLayout?.onClick { onTxClick.onClick(holder, tx) }
     }
 
     class TxHolder(view: View) : RecyclerView.ViewHolder(view) {

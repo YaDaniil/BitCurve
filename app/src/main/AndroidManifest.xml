@@ -54,6 +54,10 @@
             android:label="@string/add_account"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".screens.tx.TxActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/transaction" />
+
     </application>
 
 </manifest>

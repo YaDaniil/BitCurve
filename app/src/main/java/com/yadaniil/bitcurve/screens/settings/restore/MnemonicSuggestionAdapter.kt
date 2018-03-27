@@ -23,16 +23,16 @@ class MnemonicSuggestionAdapter(private val words: MutableList<String>,
         fun onClick(holder: WordHolder, word: String)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): WordHolder {
-        val view =  LayoutInflater.from(parent?.context)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordHolder {
+        val view =  LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_mnemonic_word, parent, false)
         return WordHolder(view)
     }
 
-    override fun onBindViewHolder(holder: WordHolder?, position: Int) {
+    override fun onBindViewHolder(holder: WordHolder, position: Int) {
         val wordString = words[position]
-        holder?.word?.text = wordString
-        holder?.rootLayout?.onClick { onWordClick.onClick(holder, wordString) }
+        holder.word.text = wordString
+        holder.rootLayout.onClick { onWordClick.onClick(holder, wordString) }
     }
 
     fun updateSuggestions(newSuggestions: MutableList<String>) {

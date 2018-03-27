@@ -41,4 +41,8 @@ class AppDbHelper(private val accountBox: Box<AccountEntity>,
     }
 
     override fun getAllUtxo(): MutableList<UtxoEntity> = utxoBox.all
+
+    override fun getTx(txEntityId: Long): TxEntity = transactionBox.get(txEntityId)
+
+    override fun getAccountEntityIdOfTx(txEntityId: Long) = transactionBox.get(txEntityId).account?.targetId ?: 0
 }
