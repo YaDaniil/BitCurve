@@ -2,12 +2,11 @@
 
 buildscript {
     ext.kotlin_version = '1.2.70'
-    ext.objectboxVersion = '1.4.1'
+    ext.objectboxVersion = '2.1.0'
     repositories {
         google()
         jcenter()
         maven { url 'https://maven.google.com' }
-        maven { url "http://objectbox.net/beta-repo/" }
         maven { url  "https://dl.bintray.com/ekito/koin" }
     }
     dependencies {
