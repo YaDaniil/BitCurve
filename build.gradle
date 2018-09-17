@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.2.21'
+    ext.kotlin_version = '1.2.70'
     ext.objectboxVersion = '1.4.1'
     repositories {
         google()
@@ -11,7 +11,7 @@ buildscript {
         maven { url  "https://dl.bintray.com/ekito/koin" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.3.0-alpha10'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         classpath "io.objectbox:objectbox-gradle-plugin:$objectboxVersion"
